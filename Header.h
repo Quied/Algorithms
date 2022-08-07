@@ -6,12 +6,13 @@
 #include <typeinfo>	
 #include <fstream>
 #include <concepts>
+#include <functional>
+#include "boost/thread.hpp"
+#include <mutex>
 
 
 namespace FS {
 
-	// std::string constexpr analysis_txt(std::string FilePath){}
-	
 
 
-}
+} // namespace FS

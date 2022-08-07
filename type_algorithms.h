@@ -55,6 +55,11 @@ namespace quied {
 
 			}*/
 
+			/*
+			 template<typename ... Arg>
+			auto th = [](Arg& ... sm){};
+			*/
+
 			template<Type ForwardIterator> // if we don't have Value in container
 			static constexpr inline bool none_of(ForwardIterator First, ForwardIterator Last, int&& Value) {
 				for (; First != Last; ++First) {

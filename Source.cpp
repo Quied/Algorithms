@@ -1,14 +1,25 @@
 #include "type_algorithms.h"
 #include <iostream>
 #include <vector>
+#include <functional>
 
 
 int main() {
 
-	std::vector<int> Vec{ 2,4,8,16,32,64,128,256,512,1024 };
+//	std::vector<int> Vec{ 1,2,3,4,5,6,7,8,9 };
+//	boost::thread_group threads;
+//	auto h = std::bind(sh, std::placeholders::_2, 2);
 
-   // quied::Same::set_as(Vec.begin(), Vec.end(), [](int a) { return a == 4; });
-   // std::cout << quied::Same::none_of(Vec.begin(), Vec.end(), 5);
 
-	std::cout << quied::wless::getStockPage("$tsla");
+	boost::asio::io_context context;
+	boost::asio::steady_timer tmr(context, boost::asio::chrono::seconds(1));
+
+	int count{1};
+
+
+	tmr.async_wait(boost::bind(quied::wless::error, 
+		boost::asio::placeholders::error, &tmr, &count));
+
+	context.run();
+
 }
