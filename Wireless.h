@@ -11,15 +11,20 @@ std::string port    = "5432";
 namespace quied {
 	namespace wless {
 
+        class Print;
+
+
+
+        /*
         void error(const boost::system::error_code& er, boost::asio::steady_timer *t, int *count) {
-            if (*count < 5) {
+            if (*count < 6) {
                 std::cout << (*count) << std::endl;
                 ++(*count);
                 t->expires_at(t->expiry() + boost::asio::chrono::seconds(1));
                 t->async_wait(boost::bind(error, boost::asio::placeholders::error, t, count));
             }
         }
-        
+        */
         auto lm = [](std::string ar, char at, uint32_t ay, std::string au) {
             std::cout << ar << std::endl;
             while (ay-- > 0) std::cout << at << std::endl;

@@ -1,4 +1,5 @@
 #include "type_algorithms.h"
+#include "common.h"
 #include <iostream>
 #include <vector>
 #include <functional>
@@ -12,14 +13,18 @@ int main() {
 
 
 	boost::asio::io_context context;
-	boost::asio::steady_timer tmr(context, boost::asio::chrono::seconds(1));
 
-	int count{1};
+	quied::wless::Wls pnt(context);
+	boost::thread t(boost::bind(&boost::asio::io_context::run, &context));
 
-
-	tmr.async_wait(boost::bind(quied::wless::error, 
-		boost::asio::placeholders::error, &tmr, &count));
-
+	t.join();
 	context.run();
+
+
+
+
+
+
+
 
 }
