@@ -1,3 +1,4 @@
+#include "Shared.h"
 #include "type_algorithms.h"
 #include "common.h"
 #include <iostream>
@@ -11,16 +12,15 @@ int main() {
 //	boost::thread_group threads;
 //	auto h = std::bind(sh, std::placeholders::_2, 2);
 
-
+/*
 	boost::asio::io_context context;
 
 	quied::wless::Wls pnt(context);
 	boost::thread t(boost::bind(&boost::asio::io_context::run, &context));
 
-	t.join();
 	context.run();
-
-
+	t.join();
+	*/
 
 
 

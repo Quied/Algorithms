@@ -11,10 +11,6 @@ std::string port    = "5432";
 namespace quied {
 	namespace wless {
 
-        class Print;
-
-
-
         /*
         void error(const boost::system::error_code& er, boost::asio::steady_timer *t, int *count) {
             if (*count < 6) {

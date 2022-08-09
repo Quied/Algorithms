@@ -45,9 +45,10 @@ namespace quied::wless {
 				_timer2.async_wait(boost::asio::bind_executor(_strand,
 					boost::bind(&Wls::print2, this)));
 			}
-
-
 		}
+
+
+
 
 	};
 
