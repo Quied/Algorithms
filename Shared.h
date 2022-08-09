@@ -2,6 +2,8 @@
 #include <iostream>
 #include <algorithm>
 #include <cstddef>
+#include <cassert>
+
 
 namespace utils {
 	/*
@@ -157,7 +159,52 @@ namespace utils {
 		// Default constructor
 		shared_ptr(void) noexcept : shared_ptr(), pn(NULL) { }
 
+		// provide pointer to manage
+		explicit shared_ptr(Elem_Type* ptr) : shared_ptr_base() {
+			accquire(ptr); // may throw std::bad_alloc
+		}
 
+		template <typename U>
+		shared_ptr(const shared_ptr<U>& ptr, Elem_Type* _ptr) : shared_ptr_base(ptr) {
+			accuire(_ptr);
+		}
+
+		// Copy cnstr to convert from another pointer type
+		template<typename D>
+		shared_ptr(const shared_ptr<D>& ptr) noexcept : shared_ptr_base(ptr) {
+			// HERE
+			assert();
+		}
+
+		shared_ptr(const shared_ptr& ptr) noexcept : shared_ptr_base(ptr) {
+			// HERE
+
+		}
+		// Assigment operator with copy-and-swap
+		shared_ptr& oeprator = (shared_ptr ptr) noexcept{
+			// swap(ptr);
+			return *this;
+		}
+
+		~shared_ptr(void) noexcept {
+		// release();
+		}
+
+
+		void reset(void) noexcept {
+			// release();
+		}
+
+		void reset(Elem_Type* ptr) {
+			assert(ptr == NULL || (pn != ptr));
+			// release();
+			accuire(ptr);
+		}
+
+
+		void swap(shared_ptr &ptr) noexcept {
+			// std::swap();
+		}
 
 	};
 
