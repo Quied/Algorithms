@@ -190,7 +190,8 @@ namespace utils {
 		// release();
 		}
 
-
+		// TODO
+		/*
 		void reset(void) noexcept {
 			// release();
 		}
@@ -203,8 +204,22 @@ namespace utils {
 
 
 		void swap(shared_ptr &ptr) noexcept {
-			// std::swap();
+			std::swap(pn, ptr.pn);
 		}
+
+		// reference counter operations
+
+		operator bool() const noexcept {
+			return (pn.use() > 0);
+		}
+
+		bool unique(void) const noexcept {
+			return (pn.use() == 1);
+		}
+		int u_count(void) const noexcept {
+			return pn.use();
+		}
+		*/
 
 	};
 
