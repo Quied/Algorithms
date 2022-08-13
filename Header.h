@@ -42,33 +42,46 @@ namespace quied::source {
 	}
 
 	void Coro_push(bcoro2::coroutine<int>::push_type& yield, int value) {
-
+		for (int i = 0; i < value; i++) {
+			std::cout << "push: " << i << std::endl;
+			yield(i);
+		}
 	}
 
 	void Coro_pull(bcoro2::coroutine<int>::pull_type& yield) {
+		int ron = 0;
 
+		while (yield){
+			std::cout << "pulled: " << ron << std::endl;
+			auto t = yield.get();
+			yield();
+			ron++;
+		}
 	}
 
 	void pull_test() {
-		bcoro2::coroutine<int>::pull_type resume{
-			std::bind(Coro_push, std::placeholders::_1, 6) };
+		bcoro2::coroutine<int>::pull_type resume{ std::bind(Coro_push, std::placeholders::_1, 6) };
+
 		while (resume) {
 			std::cout << "called " << resume.get() << std::endl;
 			resume();
 		}
 
 
-		bcoro2::coroutine<int>::pull_type resume2{
-			std::bind(Coro_push, std::placeholders::_1,3) };
-
-		while (resume2) {
-			std::cout << "called " << resume2.get() << std::endl;
-			resume2();
+		bcoro2::coroutine<int>::pull_type resume2{ std::bind(Coro_push, std::placeholders::_1,3) };
+		for(const auto &el : resume2) {
+			std::cout << "for: " << el << std::endl;
 		}
-	}
-}
-	void push_test() {
 
+	}
+
+	void push_test() {
+		bcoro2::coroutine<int>::push_type sink{ Coro_pull };
+		std::vector<int> Vec{ 42,12,124,5 };
+		for (const int& el : Vec) {
+			std::cout << "Sink: " << el << std::endl;
+			sink(el);
+		}
 	}
 
 

@@ -9,6 +9,9 @@ int main() {
 
 	quied::source::CoroFibonacci(7);
 
+	quied::source::pull_test();
+	quied::source::push_test();
+
 	
 
 }
