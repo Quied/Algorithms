@@ -4,6 +4,7 @@
 #include "boost/chrono.hpp"
 #include "boost/coroutine/all.hpp"
 #include "boost/bind/bind.hpp"
+#include "boost/thread.hpp"
 
 std::string Address = "127.0.0.1"; 
 std::string port    = "5432";
@@ -45,6 +46,9 @@ namespace quied {
             os << stream.rdbuf();
         return os.str();
         }*/
+
+
+
 
 	} // namespace wless
 } // namespace Quied

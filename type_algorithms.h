@@ -128,24 +128,44 @@ namespace quied {
 			}
 		}
 		
-		QUIED_M_U std::map<std::string, std::set<std::string>> RecursiveGarb(std::string Arg) {
-			//std::map<std::string, std::set<std::string>> st;
-			std::ofstream Fon(Arg);
+		QUIED_M_U std::map<std::string, std::set<std::string>> RecursiveGarb(std::string Path) {
+			std::map<std::string, std::set<std::string>> st;
+			std::vector<std::string> Vec; // txt 
 
-		
+
+			[=]() mutable {
+				try {
+					std::filesystem::recursive_directory_iterator it(Path);
+					for (const auto& data : it) {
+						if (data.path().extension() == ".txt") { 
+							//Vec.push_back(data.path()); 
+						}
+					}
+
+				} // try
+				catch (const std::exception& ex) {
+					std::cout << ex.what() << std::endl;
+				}
+				
+			}();
+
+			return st;
 		}
 
-		QUIED_M_U std::map<std::string, std::set<std::string>> RecursiveGarg(std::string Arg, std::string Dictio) {
-			std::ifstream Fin(Dictio);
+		QUIED_M_U std::map<std::string, std::set<std::string>> RecursiveGarb(std::string &Arg, std::string Dictionary) {
+			std::ifstream Fin(Dictionary);
 
-			if (Fin.is_open()) {
+			if (Fin.is_open()) { // if we have dictionary
+				std::map<std::string, std::set<std::string>> CoverData;
+
+				std::filesystem::recursive_directory_iterator(Arg);
+				
 
 
-
-			} else {
-				RecursiveGarb(Arg);
+				return CoverData;
+			}  else {
+				RecursiveGarb(Arg); 
 			}
-
 		}
 
 
