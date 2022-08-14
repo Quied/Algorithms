@@ -6,11 +6,17 @@
 #include "boost/bind/bind.hpp"
 #include "boost/thread.hpp"
 
-std::string Address = "127.0.0.1"; 
-std::string port    = "5432";
+// std::string Address = "127.0.0.1"; 
+// std::string port    = "5432";
 
 namespace quied {
 	namespace wless {
+
+
+
+
+
+
 
         /*
         void error(const boost::system::error_code& er, boost::asio::steady_timer *t, int *count) {
@@ -21,7 +27,8 @@ namespace quied {
                 t->async_wait(boost::bind(error, boost::asio::placeholders::error, t, count));
             }
         }
-        */
+        
+
         auto lm = [](std::string ar, char at, uint32_t ay, std::string au) {
             std::cout << ar << std::endl;
             while (ay-- > 0) std::cout << at << std::endl;
@@ -31,7 +38,7 @@ namespace quied {
          // std::function<void(std::string, char, uint32_t, std::string)> Fo =
            // std::bind(&decltype(lm)::operator(), std::placeholders::_1, &lm);
 
-        /*
+        
         std::string getStockPage(const std::string site, std::string const& ticker) {
             boost::asio::ip::tcp::iostream stream;
             !!

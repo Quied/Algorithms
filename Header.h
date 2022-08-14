@@ -7,12 +7,16 @@
 #include <fstream>
 #include <string>
 #include <set>
+#include <mutex>
 #include <concepts>
 #include <functional>
+#include <future>
+#include <numeric>
+
 #include "boost/thread.hpp"
 #include "boost/coroutine/asymmetric_coroutine.hpp"
 #include "boost/coroutine2/coroutine.hpp"
-#include <mutex>
+
 
 
 namespace basycoro = boost::coroutines;
@@ -83,6 +87,10 @@ namespace quied::source {
 			sink(el);
 		}
 	}
+
+
+
+
 
 
 } // namespace source
