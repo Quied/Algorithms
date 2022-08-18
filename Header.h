@@ -25,6 +25,9 @@ namespace bcoro2 = boost::coroutines2;
 namespace quied::source {
 
 
+
+
+
 	void CoroFibonacci(int&& Limit) {
 		boost::coroutines::asymmetric_coroutine<int>::pull_type sourc(
 			[&](boost::coroutines::asymmetric_coroutine<int>::push_type& Coro) {
@@ -42,7 +45,7 @@ namespace quied::source {
 				}
 			});
 
-		for (const auto& el : sourc) { std::cout << el << std::endl; }
+		for (const auto& el : sourc) { std::cout << el << " "; }
 	}
 
 	void Coro_push(bcoro2::coroutine<int>::push_type& yield, int value) {

@@ -6,14 +6,13 @@
 #include "boost/bind/bind.hpp"
 #include "boost/thread.hpp"
 
-// std::string Address = "127.0.0.1"; 
-// std::string port    = "5432";
+
+#include "boost/beast/core.hpp"
+#include "boost/beast/http.hpp"
+#include "boost/beast/version.hpp"
 
 namespace quied {
 	namespace wless {
-
-
-
 
 
 

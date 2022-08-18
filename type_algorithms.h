@@ -101,6 +101,47 @@ namespace quied {
 	} // namespace decl
 } // namespace quied
 
+
+class M_Value {
+public:
+	virtual ~M_Value();
+};
+
+template <class T> class Value : public M_Value {
+	T _Value;
+
+public:
+
+	explicit Value(const T &value) : _Value(value) {}
+	T& get() const { return _Value; }
+
+
+};
+
+namespace quied::any {
+
+	// Any must store pointer on object
+	// this object store the type we want
+	
+	class Any {
+		std::unique_ptr<M_Value> _ptr;
+
+	public:
+		template <class T>
+		Any(const T &value) : _ptr(new Value<T>(value)){ }
+
+		template <class T>
+		T get() const {
+			Value<T>* val = dynamic_cast<Value<T>*>(_ptr.get());
+			if (!val) { return T(); }
+			return val->get();
+		}
+
+	};
+
+
+}// namespace any
+
 namespace quied {
 	namespace fs {
 		// Find file at directory
@@ -167,6 +208,9 @@ namespace quied {
 				RecursiveGarb(Arg); 
 			}
 		}
+
+
+
 
 
 
