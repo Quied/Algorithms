@@ -131,12 +131,11 @@ namespace quied::any {
 		Any(const T &value) : _ptr(new Value<T>(value)){ }
 
 		template <class T>
-		T get() const {
+		T& get()  {
 			Value<T>* val = dynamic_cast<Value<T>*>(_ptr.get());
 			if (!val) { return T(); }
 			return val->get();
 		}
-
 	};
 
 

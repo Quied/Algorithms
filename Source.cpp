@@ -2,6 +2,8 @@
 #include "type_algorithms.h"
 #include "openssl.h"
 #include "common.h"
+#include "googletest.h"
+
 #include <iostream>
 #include <vector>
 #include <functional>
@@ -14,8 +16,7 @@ int main(int argc,  char **argv) {
 	quied::source::pull_test();
 	quied::source::push_test();
 
-	quied::any::Any obj(5);
-   
-	 
 
+	testing::InitGoogleTest(&argc, argv);
+	return RUN_ALL_TESTS();
 }
