@@ -10,11 +10,16 @@
 
 // #include "HTTPRequest.hpp"
 
+
+
 int main(int argc,  char **argv) {
 	
-	quied::source::CoroFibonacci(2);
-	quied::source::pull_test();
-	quied::source::push_test();
+	//quied::source::CoroFibonacci(2);
+	//quied::source::pull_test();
+	//quied::source::push_test();
+
+	quied::any::QAny a(3);
+	std::cout << quied::any::QAny::any_cast<int>(a) << std::endl;
 
 
 	testing::InitGoogleTest(&argc, argv);

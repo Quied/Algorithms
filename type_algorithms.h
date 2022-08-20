@@ -4,6 +4,8 @@
 #include <iterator>
 #include <utility>
 #include <chrono>
+#include <typeinfo>
+
 
 #include "Header.h"
 #include "Wireless.h"
@@ -120,9 +122,41 @@ public:
 
 namespace quied::any {
 
+
+	struct QAny {
+		void* _ptr;
+		std::type_info const& _type;
+
+		std::type_info const& (*_getType)();
+		void* (*_clone)(void* other);
+
+		/*
+		template <typename T>
+		explicit QAny(T &&value) : _ptr(new T{std::forward<T>(value)}), 
+			_type(typeid(T)){ }
+			*/
+
+		template <typename T> 
+		explicit QAny(T&& value) : _ptr(new T{ std::forward<T>(value) }), _getType{ []() -> 
+			std::type_info const& { return typeid(T); } }, _clone([](void* other) -> 
+			void* { return new T(*static_cast<T*>(other)); }) { }
+
+	//	QAny(const QAny& copy) : _ptr(copy._clone(copy._ptr), _getType(copy._getType), _clone(copy._clone) {}
+
+		template <typename T>
+		static T& any_cast(QAny& Any) {
+			if (typeid(T) == Any._type)
+				return *static_cast<T*>(Any._ptr);
+			else {
+				throw std::bad_any_cast{};
+			}
+		}
+
+	};
+
+
 	// Any must store pointer on object
 	// this object store the type we want
-	
 	class Any {
 		std::unique_ptr<M_Value> _ptr;
 
