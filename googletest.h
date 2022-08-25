@@ -6,8 +6,9 @@
 #include "type_algorithms.h"
 
 class AnyMock : public quied::any::Any {
-
-
+	
+	// MOCK_METHOD()
+	
 
 };
 

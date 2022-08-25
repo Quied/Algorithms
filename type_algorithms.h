@@ -117,11 +117,11 @@ public:
 	explicit Value(const T &value) : _Value(value) {}
 	T& get() const { return _Value; }
 
-
 };
 
-namespace quied::any {
 
+
+namespace quied::any {
 
 	struct QAny {
 		void* _ptr;
@@ -135,11 +135,12 @@ namespace quied::any {
 		explicit QAny(T &&value) : _ptr(new T{std::forward<T>(value)}), 
 			_type(typeid(T)){ }
 			*/
-
+	
 		template <typename T> 
 		explicit QAny(T&& value) : _ptr(new T{ std::forward<T>(value) }), _getType{ []() -> 
 			std::type_info const& { return typeid(T); } }, _clone([](void* other) -> 
 			void* { return new T(*static_cast<T*>(other)); }) { }
+			
 
 	//	QAny(const QAny& copy) : _ptr(copy._clone(copy._ptr), _getType(copy._getType), _clone(copy._clone) {}
 
@@ -151,9 +152,7 @@ namespace quied::any {
 				throw std::bad_any_cast{};
 			}
 		}
-
 	};
-
 
 	// Any must store pointer on object
 	// this object store the type we want
@@ -171,6 +170,7 @@ namespace quied::any {
 			return val->get();
 		}
 	};
+
 
 
 }// namespace any
