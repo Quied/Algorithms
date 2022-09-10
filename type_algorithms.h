@@ -177,6 +177,8 @@ namespace quied::any {
 
 namespace quied {
 	namespace fs {
+
+		
 		// Find file at directory
 		bool QUIED_NODISCARD dir_has_file(const std::string& dir_str, const std::string &file_str) {
 			bool has = false; // if file has in directory
@@ -185,9 +187,7 @@ namespace quied {
 					std::cout << entry.path().filename() << std::endl;
 					if (file_str == entry.path().filename()) {
 						has = true; return;
-					}
-				}
-				}();
+					} } }();
 			return has;
 		}
 
@@ -215,8 +215,7 @@ namespace quied {
 							//Vec.push_back(data.path()); 
 						}
 					}
-
-				} // try
+				} 
 				catch (const std::exception& ex) {
 					std::cout << ex.what() << std::endl;
 				}
@@ -231,10 +230,7 @@ namespace quied {
 
 			if (Fin.is_open()) { // if we have dictionary
 				std::map<std::string, std::set<std::string>> CoverData;
-
-				std::filesystem::recursive_directory_iterator(Arg);
-				
-
+					std::filesystem::recursive_directory_iterator(Arg);	
 
 				return CoverData;
 			}  else {

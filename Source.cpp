@@ -1,42 +1,48 @@
-// #include "Shared.h"
+#include "Shared.h"
 //#include "type_algorithms.h"
 #include "openssl.h"
 #include "common.h"
 //#include "googletest.h"
-#include "Wireless.h"
-
+// #include "Wireless.h"
+#include "boost/process.hpp"
+#include <memory>
 #include <iostream>
 #include <vector>
+#include <map>
 #include <functional>
-
 // #include "HTTPRequest.hpp"
 
 
 
+void TL::show(int a) {
+	std::cout << a + a << std::endl;
+}
+
 int main(int argc,  char **argv) {
+
+	/*
+	// utils::unique_ptr<int>::frow(42);
 	
-	//quied::source::CoroFibonacci(2);
-	//quied::source::pull_test();
-	//quied::source::push_test();
+	auto t = std::unique_ptr<TL>(new TL);
+	t->show(22);
 
-	//	quied::any::QAny a(3);
-	// std::cout << quied::any::QAny::any_cast<int>(a) << std::endl;
+	std::unique_ptr<TL> NT;
+	NT->show(33);
 
+	TL a;
+	a.show(42);
+	*/
 
-	// -------------
-	boost::process::ipstream pipe;
-	boost::process::child a("gcc --version", boost::process::std_out > pipe);
-
-	std::string str;
-
-	while (pipe && std::getline(pipe, str) && !str.empty())
-		std::cerr << str << std::endl;
-
-	a.wait();
-	// -----------------------
+	int x = 5;
+	utills::unique_ptr<int> ptr(&x);
+	
+	utills::unique_ptr<int> ptr2(ptr);
+	
 
 
 
+
+	// std::cout << sizeof(t);
 	//testing::InitGoogleTest(&argc, argv);
 	//return RUN_ALL_TESTS();
 }
